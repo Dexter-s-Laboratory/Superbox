@@ -1,16 +1,78 @@
+import React, { useState, useRef } from 'react';
+import { SafeAreaView, ScrollView, Text, Animated, StyleSheet } from 'react-native';
 
-import React, { Component,useState, useRef } from "react";
-import { StyleSheet, Text, View, Button, Animated, ScrollView } from 'react-native';
-import Search from "../../globalComponents/Search.js";
 
-const HomeMarket = ({ navigation }) => {
+// You can import from local files
+import DynamicHeader from '../../globalComponents/Search.js';
+
+export default function App() {
+  let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
   return (
-    <View>
-      <View style={{alignItems: "center", padding: "5%"}}>
-        <Search />
-      </View>
-    </View>
-  )
+    <SafeAreaView style={styles.container}>
+      <DynamicHeader animHeaderValue={scrollOffsetY} />
+      <ScrollView
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollOffsetY}}}],
+          {useNativeDriver: false}
+        )}
+      >
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      <Text>Hi</Text>
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
-export default HomeMarket;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 10,
+    margin: 0
+  },
+  scrollText: {
+    fontSize: 19,
+    textAlign: 'center',
+    padding: 20,
+    color: '#000'
+  }
+});

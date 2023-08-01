@@ -1,20 +1,41 @@
-import React from "react";
-import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
+import * as React from 'react';
+import { Text, View, StyleSheet, Animated, TextInput, Keyboard, Button } from 'react-native';
 import { Feather, Entypo } from "@expo/vector-icons";
 
-const Search = () => {
+const Header_Max_Height = 70;
+const Header_Min_Height = 0;
+
+export default function DynamicHeader({animHeaderValue}) {
+  const searchBarPadding = animHeaderValue.interpolate({
+    inputRange: [0, Header_Max_Height - Header_Min_Height],
+    outputRange: [10, 0],
+    extrapolate: 'clamp'
+  })
+
+  const animateHeaderHeight =  animHeaderValue.interpolate({
+    inputRange: [0, Header_Max_Height - Header_Min_Height],
+    outputRange: [Header_Max_Height , Header_Min_Height],
+    extrapolate: 'clamp'
+  })
 
   return (
-    <View>
-      <View style={{
-    padding: 10,
-    flexDirection: "row",
-    width: "95%",
-    backgroundColor: "#d9dbda",
-    borderRadius: 15,
-    alignItems: "center",
-  }}>
-      <Feather
+    <Animated.View
+        style={[
+          styles.header,
+          {
+            height: animateHeaderHeight,
+          }
+
+        ]}
+      >
+      <Animated.View style={[
+        styles.searchBar,
+        {
+          padding:searchBarPadding,
+        }
+      ]
+      }>
+        <Feather
           name="search"
           size={20}
           color="black"
@@ -26,9 +47,24 @@ const Search = () => {
             width: "90%",}}
           placeholder="Search"
         />
-      </View>
-    </View>
-
-  )
+      </Animated.View>
+    </Animated.View>
+  );
 }
-export default Search;
+
+const styles = StyleSheet.create({
+  header: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    left: 0,
+    right: 0,
+    paddingTop: 10
+  },
+  searchBar: {
+    flexDirection: "row",
+    width: "95%",
+    backgroundColor: "#d9dbda",
+    borderRadius: 15,
+    alignItems: "center",
+    }
+});

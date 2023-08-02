@@ -1,9 +1,12 @@
 import React from "react";
 import styled from 'styled-components/native'
-import { Text, View, Image, Button, ScrollView} from 'react-native';
+import { Text, View, Image, Button, ScrollView, Pressable} from 'react-native';
 import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph, GlobalRating} from  '../globalComponents/globalStyles.js';
+import { useNavigation } from '@react-navigation/native';
 
 const ProductCard = () => {
+
+  const navigation = useNavigation();
 
   const ScrollContainer = styled.ScrollView`
   `;
@@ -49,7 +52,14 @@ const ProductCard = () => {
   const PriceContainer = styled.View`
   align-items: center;
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  `;
+
+  const TempSellerText = styled.Text`
+  color: #C51613;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration-line: underline;
   `;
 
 
@@ -69,6 +79,9 @@ const ProductCard = () => {
         </ImgContainer>
 
         <GlobalTitle>The Amazing Spiderman</GlobalTitle>
+        <Pressable>
+        <TempSellerText>@Superbox</TempSellerText>
+        </Pressable>
         <DescContainer>
         <GlobalParagraph>50th Issue of The Amazing Spiderman</GlobalParagraph>
         </DescContainer>

@@ -21,7 +21,7 @@ text-decoration-line: underline;
 
 export const  GlobalParagraph = styled.Text`
 text-align: center;
-color: #31368;
+color: #313638;
 font-size: 16px;
 font-weight: bold;
 padding-bottom:4px

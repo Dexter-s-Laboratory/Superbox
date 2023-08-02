@@ -2,6 +2,7 @@ import {useState} from "react";
 import { StyleSheet, Text, View, Image, Button, Alert} from 'react-native';
 import styled from 'styled-components/native'
 import CartCard from './CartCard.js';
+import { useNavigation } from '@react-navigation/native';
 import {Container, ItemNumberContainer, CartInfoContainer, SubTotalContainer} from './styles.js';
 import {GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalButton} from '../../globalComponents/globalStyles.js';
 
@@ -19,6 +20,7 @@ const CartPage = () => {
   const calculateTotal = () => {
     return products.reduce((accu,product) => accu + Number(product.product_price),  0)
   }
+  const navigation = useNavigation();
 
   return (
     <GlobalView>
@@ -37,7 +39,7 @@ const CartPage = () => {
           <GlobalPrice>Subtotal: ${calculateTotal()}</GlobalPrice>
           <GlobalButton
           title="Checkout"
-          onPress={() => Alert.alert('Payment confirmed! Your items are on their way!')}
+          onPress={() => {Alert.alert('Payment confirmed! Your items are on their way!'); navigation.navigate('Home')}}
         />
         </SubTotalContainer>
       </Container>

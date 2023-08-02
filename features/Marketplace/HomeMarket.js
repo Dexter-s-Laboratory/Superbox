@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, ScrollView, Text, Animated, StyleSheet, View } from 'react-native';
-
+import { Pressable, SafeAreaView, ScrollView, Text, Animated, StyleSheet, View } from 'react-native';
+import Product from '../Listing/ProductPage'
+import { useNavigation } from '@react-navigation/native';
 import DynamicHeader from '../../globalComponents/Search.js';
 import ProductCard from '../../globalComponents/ProductCard.js';
 
 export default function App() {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -17,9 +19,11 @@ export default function App() {
           {useNativeDriver: false}
         )}
       >
+        <Pressable onPress={() => navigation.navigate('Product')}>
         <View style={{height: 400}}>
           <ProductCard />
         </View>
+        </Pressable>
         <View style={{height: 400}}>
           <ProductCard />
         </View>

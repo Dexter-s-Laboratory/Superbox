@@ -2,7 +2,7 @@ import React from 'react';
 const axios = require('axios');
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch, Modal } from 'react-native';
 
-// import requestHelpers from '../../lib/requestHelpers.js';
+// import {handleProfileUpdate} from '../../lib/requestHelpers.js';
 
 const obscurePass = (password) => {
   let result = '';
@@ -12,7 +12,7 @@ const obscurePass = (password) => {
   return result;
 };
 
-export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
+export default PersonalBlock = ({ profile,  }) => {
 
   // const handleUpdate = (field, newData) => {
   //   return axios.put(`/api/u/users/${profile.user_id}/profile`, {[field]: newData})
@@ -20,6 +20,10 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
   //     handleProfileUpdate()
   //   })
   // };
+
+  const handleProfileUpdate = () => {
+    console.log('handling')
+  }
 
 
 
@@ -95,12 +99,12 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: '15',
+    fontSize: 15,
     textDecorationLine: 'underline'
   },
   line: {
     marginBottom: '3%',
-    fontSize: '15',
+    fontSize: 15,
   },
   infoLeft: {
     padding: '.5%'
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, .92)'
   },
   sectionHeading: {
-    fontSize: '20',
+    fontSize: 20,
     marginBottom: 8,
     textDecorationLine: 'underline'
   },

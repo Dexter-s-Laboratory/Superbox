@@ -11,6 +11,8 @@ import SignIn from "./features/LoginSignup/Signin.js";
 import MyListings from './features/MyListings/MyListings.js';
 import PublicProfile from './features/UserProfile/PublicProfile.js';
 import Purchases from './features/UserProfile/Purchases.js';
+import Conversations from './features/Messages/Conversations.js';
+// import Messages from './features/Messages/Messages.js';
 
 const Tab = createBottomTabNavigator();
 

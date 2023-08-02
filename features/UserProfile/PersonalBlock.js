@@ -12,7 +12,7 @@ const obscurePass = (password) => {
   return result;
 };
 
-export default PersonalBlock = ({ profile,  }) => {
+export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
 
   // const handleUpdate = (field, newData) => {
   //   return axios.put(`/api/u/users/${profile.user_id}/profile`, {[field]: newData})
@@ -21,9 +21,6 @@ export default PersonalBlock = ({ profile,  }) => {
   //   })
   // };
 
-  const handleProfileUpdate = () => {
-    console.log('handling')
-  }
 
 
 

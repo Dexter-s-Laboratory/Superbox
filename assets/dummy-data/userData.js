@@ -18,14 +18,17 @@ export const userData = {
     { user: 'wonderwoman164', date: '02:16:2023', text: 'hello' }
   ],
   listings: [
-    { product: 'Heir Force Ones', date: '12:06:2023', info: 'more info' },
-    { product: 'Camo Onesie', date: '12:06:2023', info: 'more info' },
-    { product: 'Slacker Pants', date: '12:06:2023', info: 'more info' }
+    { product: 'Heir Force Ones', date: '12-06-2023', info: 'more info', price: '$109.99' },
+    { product: 'Camo Onesie', date: '12-06-2023', info: 'more info', price: '$35.50'  },
+    { product: 'Camo Onesie', date: '12-06-2023', info: 'more info', price: '$35.50'  },
+
+    { product: 'Camo Onesie', date: '12-06-2023', info: 'more info', price: '$35.50'  },
+    { product: 'Slacker Pants', date: '12-06-2023', info: 'more info', price: '$19.99' }
   ],
   purchases: [
-    { product: 'Red Cape', date: '12:06:2023', info: 'more info' },
-    { product: 'Blue Pajamas', date: '12:06:2023', info: 'more info' },
-    { product: 'Hair Gel', date: '12:06:2023', info: 'more info' }
+    { product: 'Red Cape', date: 'December 6th, 2023', info: 'more info', price: '$49.99' },
+    { product: 'Blue Pajamas', date: 'March 13th, 2023', info: 'more info', price: '$19.99' },
+    { product: 'Hair Gel', date: 'February 16th, 2023', info: 'more info', price: '$9.99' }
   ],
   sold: [
     { product: 'Kryptonite', date: '12:06:2023', info: 'more info' },

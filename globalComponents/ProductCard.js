@@ -1,13 +1,24 @@
 import React from "react";
 import styled from 'styled-components/native'
-import { Text, View, Image, Button } from 'react-native';
-import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph} from  '../globalComponents/globalStyles.js';
+import { Text, View, Image, Button, ScrollView} from 'react-native';
+import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph, GlobalRating} from  '../globalComponents/globalStyles.js';
 
 const ProductCard = () => {
+
+  const ScrollContainer = styled.ScrollView`
+  `;
+
+  const AlignContainer = styled.View`
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  `
 
   const CardContainer = styled.View`
   flex-direction: row;
   height: 85%;
+  max-height: 90%;
   `
 
   const Card = styled.View`
@@ -17,12 +28,12 @@ const ProductCard = () => {
   `;
 
   const ImgContainer = styled.View`
-  height: 55%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
   margin-bottom: 40px;
-  margin-top: 20px;
+  margin-top: 50px;
   justify-content: center;
-
   `;
 
   const ProductImg = styled.Image`
@@ -30,39 +41,45 @@ const ProductCard = () => {
   width: 100%;
   `;
 
-  const ProductButton = styled.Button`
-
-  `;
-
-  const InfoContainer = styled.View`
+  const DescContainer = styled.View`
   align-items: center;
-  padding-top: 20px;
+  margin-top: 10px;
   `;
 
+  const PriceContainer = styled.View`
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  `;
 
 
   return (
 
     <GlobalView>
+      <ScrollContainer>
+        <AlignContainer>
       <CardContainer>
       <Card>
         <ImgContainer>
         <ProductImg
           source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png',
+            uri: 'https://img.buzzfeed.com/buzzfeed-static/static/2022-03/30/23/asset/c14c01274175/sub-buzz-532-1648681737-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto',
         }}
         />
         </ImgContainer>
 
-        <GlobalTitle>Product Name</GlobalTitle>
-        <InfoContainer>
-        <GlobalParagraph>This is a sample description.</GlobalParagraph>
-        </InfoContainer>
-        <InfoContainer>
+        <GlobalTitle>The Amazing Spiderman</GlobalTitle>
+        <DescContainer>
+        <GlobalParagraph>50th Issue of The Amazing Spiderman</GlobalParagraph>
+        </DescContainer>
+        <PriceContainer>
         <GlobalPrice>$29.99</GlobalPrice>
-        </InfoContainer>
+        </PriceContainer>
+        <GlobalRating>★★★★★</GlobalRating>
       </Card>
       </CardContainer>
+      </AlignContainer>
+      </ScrollContainer>
     </GlobalView>
   )
 }

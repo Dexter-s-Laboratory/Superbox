@@ -1,30 +1,70 @@
 import React, {useState} from "react";
+import axios from 'axios';
 import { TouchableOpacity } from 'react-native';
-import styled from 'styled-components/native'
-import Logo from '../../assets/logo.png'
-import { Firebase_Auth} from '../../FirebaseConfig.js'
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
-import {Container, NoAccountContainer, LogoImage, Title, BoldText, SubHeader, ButtonContainer, Button, ContinueBtn, ButtonText, InputBarContainer, InputField, SignUpText, NoAccountText} from './SignIn_Styles'
+import styled from 'styled-components/native';
+import Logo from '../../assets/logo.png';
+import { Firebase_Auth} from '../../FirebaseConfig.js';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import {Container, NoAccountContainer, LogoImage, Title, BoldText, SubHeader, ButtonContainer, Button, ContinueBtn, ButtonText, InputBarContainer, InputField, SignUpText, NoAccountText} from './SignIn_Styles';
 
-const SignIn = () => {
+const SignIn = ({profile, setProfile}) => {
   const [logIn, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false)
   const [profilePage, setProfilePage] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [profile, setProfile] = useState({});
 
   const auth = Firebase_Auth;
+
+  const sendProfileData = async () => {
+    try {
+      const endpoint = '/ENDPOINT';
+
+      const config = {
+        headers: {
+          authorization: `${profile.idToken}`,
+        },
+      };
+
+      const response = await axios.post(endpoint, profile, config);
+
+      console.log('Response:', response.data);
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const signInFunc = async () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      setProfile({...profile, 'email': email})
+
+      setProfile({
+        ...profile,
+        'firebase_uid': response.user.uid,
+        'email': email,
+        'idToken': response._tokenResponse.idToken
+      });
+
       setSignUp(false);
       setLogin(false);
       setProfilePage(false);
-      console.log(response);
       alert('Sign In Success')
+
+    const config = {
+      headers: {
+        authorization: `${response._tokenResponse.idToken}`,
+      },
+    };
+
+    const backendResponse = await axios.get('/ENDPOINT', config);
+
+    setProfile({
+      ...profile,
+      ...backendResponse.data,
+    });
+
+    console.log('Profile Data from Backend:', backendResponse.data);
 
     } catch (error) {
       console.log(error);
@@ -35,13 +75,12 @@ const SignIn = () => {
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-      console.log('RESPONSE',response)
 
       setProfile({
         ...profile,
-        'uID': response.user.uid,
+        'firebase_uid': response.user.uid,
         'email': email,
-        'tokenID': response.tokenID
+        'idToken': response._tokenResponse.idToken
       });
 
       setSignUp(false);
@@ -72,6 +111,14 @@ const SignIn = () => {
     setPassword(text);
   };
 
+  const handlePhoneNumber = (text) => {
+    const cleanedText = text.replace(/\D/g, '');
+
+    const match = cleanedText.match(/^(\d{3})(\d{0,3})(\d{0,4})$/);
+    const formattedNumber = match ? `(${match[1]})${match[2] ? ` ${match[2]}` : ''}${match[3] ? `-${match[3]}` : ''}` : '';
+
+    return formattedNumber;
+  };
 
   if (logIn === false && signUp === false && profilePage === false) {
      return (
@@ -150,28 +197,55 @@ const SignIn = () => {
     )
   } else if (profilePage === true) {
     return (
-      <Container>
+    <Container>
+      <LogoImage source={Logo} />
+      <Title>Profile</Title>
 
-        <LogoImage source={Logo} />
-        <Title>Profile</Title>
+      <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, full_name: text })} placeholder="Name" />
+      </InputBarContainer>
 
-        <InputBarContainer>
-            <InputField onChangeText={(text) => setProfile({...profile, 'Name': text})} placeholder="Name"/>
-        </InputBarContainer>
-        <InputBarContainer>
-            <InputField onChangeText={(text) => setProfile({...profile, 'Address': text})} placeholder="Address" autocapitalize="none"/>
-        </InputBarContainer>
-        <InputBarContainer>
-            <InputField onChangeText={(text) => setProfile({...profile, 'Interests': text})} placeholder="Interests"/>
-        </InputBarContainer>
-        <InputBarContainer>
-            <InputField onChangeText={(text) => setProfile({...profile, 'Number': text})} placeholder="Number"/>
-        </InputBarContainer>
+      <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, username: text })} placeholder="Username" />
+      </InputBarContainer>
 
+      <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, address_line_1: text })} placeholder="Address 1" autocapitalize="none" />
+      </InputBarContainer>
 
-        <ContinueBtn onPress={() => {console.log(profile)}}><ButtonText>Continue</ButtonText></ContinueBtn>
+      <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, address_line_2: text })} placeholder="Address 2 (apt #)" autocapitalize="none" />
+      </InputBarContainer>
 
-      </Container>
+      <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, city: text })} placeholder="City" autocapitalize="none" />
+      </InputBarContainer>
+
+      <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, state_abbr: text })} placeholder="State Abbreviation" autocapitalize="none" />
+      </InputBarContainer>
+
+      <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, zip: text })} placeholder="Zip" autocapitalize="none" />
+      </InputBarContainer>
+
+      <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, interests: text })} placeholder="Interests" />
+      </InputBarContainer>
+
+      <InputBarContainer>
+        <InputField
+          onChangeText={(text) => {
+            const formattedNumber = handlePhoneNumber(text);
+            setProfile({ ...profile, Number: formattedNumber });
+          }}
+          placeholder="Number"
+          keyboardType="phone-pad"
+        />
+      </InputBarContainer>
+
+      <ContinueBtn onPress={sendProfileData}><ButtonText>Continue</ButtonText></ContinueBtn>
+    </Container>
     )
 
   }

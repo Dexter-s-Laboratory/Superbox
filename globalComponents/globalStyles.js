@@ -9,18 +9,22 @@ height: 100%;
 `;
 
 export const GlobalTitle = styled.Text`
+text-align: center;
+font-family: Impact;
 color: #EF6461;
 padding-bottom:8px;
 font-size: 24px;
 font-weight: bold;
 flex-wrap: wrap;
+text-decoration-line: underline;
 `;
 
 export const  GlobalParagraph = styled.Text`
+text-align: center;
 color: #4D5558;
 font-size: 16px;
 font-weight: bold;
-padding-bottom:8px
+padding-bottom:4px
 `;
 
 export const GlobalPrice = styled.Text`
@@ -30,6 +34,25 @@ color: #636E72;
 text-decoration-line: underline;
 `;
 
-export const GlobalButton = styled.Button`
+export const GlobalRating = styled.Text`
+text-align: center;
+font-size: 20px;
+font-weight: bold;
+color: #E4B363;
+text-decoration-line: underline;
+`;
+
+export const GlobalButton = styled.Pressable`
+alignItems: center;
+justifyContent: center;
+paddingVertical: 12;
+paddingHorizontal: 32;
+border-radius: 3px;
+elevation: 3;
+backgroundColor: #EF6461;
+`;
+
+export const GlobalButtonText = styled.Text`
+color: #fff;
 
 `;

@@ -11,32 +11,33 @@ const obscurePass = (password) => {
   return result;
 };
 
-export default PersonalBlock = ({data}) => {
+export default PersonalBlock = ({ data }) => {
   return (
     <View style={styles.sectionContainer}>
 
-              <Text style={styles.sectionHeading}>Personal Information</Text>
-              <View style={styles.infoBlock}>
-                <View style={styles.infoLeft}>
-                  <Text style={styles.infoType}>Name: </Text>
-                  <Text style={styles.info}>{data.firstName} {data.lastName}</Text>
-                </View>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={styles.editButton}>Edit</Text>
-                </TouchableOpacity>
-              </View>
+      <Text style={styles.sectionHeading}>Personal Information</Text>
 
-              <View style={styles.infoBlock}>
-                <View style={styles.infoLeft}>
-                  <Text style={styles.infoType}>Email:</Text>
-                  <Text style={styles.info}>{data.email}</Text>
-                </View>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={styles.editButton}>Edit</Text>
-                </TouchableOpacity>
-              </View>
+      <View style={styles.infoBlock}>
+        <View style={styles.infoLeft}>
+          <Text style={styles.infoType}>Name: </Text>
+          <Text style={styles.info}>{data.firstName} {data.lastName}</Text>
+        </View>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Text style={styles.editButton}>Edit</Text>
+        </TouchableOpacity>
+      </View>
 
-              {/* <View style={styles.infoBlock}>
+      <View style={styles.infoBlock}>
+        <View style={styles.infoLeft}>
+          <Text style={styles.infoType}>Email:</Text>
+          <Text style={styles.info}>{data.email}</Text>
+        </View>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Text style={styles.editButton}>Edit</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* <View style={styles.infoBlock}>
                 <View style={styles.infoLeft}>
                   <Text style={styles.infoType}>Password:</Text>
                   <Text style={styles.info}>{obscurePass(data.password)}</Text>
@@ -47,29 +48,29 @@ export default PersonalBlock = ({data}) => {
               </View> */}
 
 
-              <View style={styles.infoBlock}>
-                <View style={styles.infoLeft}>
-                  <Text style={styles.infoType}>Primary phone number:</Text>
-                  <Text style={styles.info}>{data.phone.slice(0, 3)}-{data.phone.slice(3, 6)}-{data.phone.slice(6, 10)}</Text>
-                </View>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={styles.editButton}>Edit</Text>
-                </TouchableOpacity>
-              </View>
+      <View style={styles.infoBlock}>
+        <View style={styles.infoLeft}>
+          <Text style={styles.infoType}>Primary phone number:</Text>
+          <Text style={styles.info}>{data.phone.slice(0, 3)}-{data.phone.slice(3, 6)}-{data.phone.slice(6, 10)}</Text>
+        </View>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Text style={styles.editButton}>Edit</Text>
+        </TouchableOpacity>
+      </View>
 
-              <View style={styles.infoBlock}>
-                <View style={styles.infoLeft}>
-                  <Text style={styles.infoType}>Address:</Text>
-                  <Text style={[styles.line, styles.text]}>{data.address1}</Text>
-                {data.address2 && <Text style={[styles.line, styles.text]}>{data.address2}</Text>}
-                <Text style={[styles.line, styles.text]}>{data.city}, {data.state}</Text>
-                <Text style={[styles.line, styles.text]}>{data.zip}</Text>
-                </View>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={styles.editButton}>Edit</Text>
-                </TouchableOpacity>
-              </View>
-          </View>
+      <View style={styles.infoBlock}>
+        <View style={styles.infoLeft}>
+          <Text style={styles.infoType}>Address:</Text>
+          <Text style={[styles.line, styles.text]}>{data.address1}</Text>
+          {data.address2 && <Text style={[styles.line, styles.text]}>{data.address2}</Text>}
+          <Text style={[styles.line, styles.text]}>{data.city}, {data.state}</Text>
+          <Text style={[styles.line, styles.text]}>{data.zip}</Text>
+        </View>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Text style={styles.editButton}>Edit</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
@@ -81,11 +82,12 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: '20em',
+    fontSize: '15',
+    textDecorationLine: 'underline'
   },
   line: {
     marginBottom: '3%',
-    fontSize: '15em'
+    fontSize: '15',
   },
   infoLeft: {
     padding: '.5%'
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e0dfd5',
     borderWidth: '.5%',
     borderRadius: 2,
-    marginBottom: '2%'
+    marginBottom: '2%',
 
   },
   infoType: {
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, .92)'
   },
   sectionHeading: {
-    fontSize: '20em',
+    fontSize: '20',
     marginBottom: 8,
     textDecorationLine: 'underline'
   },

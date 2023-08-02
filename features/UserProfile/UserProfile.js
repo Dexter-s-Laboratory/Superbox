@@ -5,11 +5,9 @@ import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import PersonalBlock from './PersonalBlock.js';
 
-export default function UserProfile() {
+export default function UserProfile({navigation}) {
 
   const [data, setData] = useState(userData);
-
-
 
   return (
     <View style={styles.container}>
@@ -22,6 +20,23 @@ export default function UserProfile() {
 
           <Text style={styles.mainHeading}>Hi, {data.firstName}!</Text>
 
+          <View style={styles.sectionContainer}>
+            <View style={styles.buttonHeading}>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text onPress={() => navigation.navigate('Purchases')}style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text onPress={() => navigation.navigate('Public Profile')}style={[styles.option, { color: '#ef6461' }]}>View Profile</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
           <PersonalBlock data={data} />
 
           <View style={styles.sectionContainer}>
@@ -33,7 +48,12 @@ export default function UserProfile() {
           </View>
 
           <View style={styles.sectionContainer}>
-            <Text style={[styles.sectionHeading, {color: '#ef6461'}]}>Contact Superbox</Text>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Log Out</Text>
+            </TouchableOpacity>
           </View>
 
         </ScrollView>
@@ -43,35 +63,20 @@ export default function UserProfile() {
 }
 
 const styles = StyleSheet.create({
-  address: {
-    fontSize: '20em'
-  },
   backgroundImage: {
     flex: 1,
     width: '95%',
     justifyContent: 'center'
   },
-  banner: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-
-  },
-  body: {
-    borderTopWidth: '3%',
-    borderTopColor: '#ef6461',
-    borderBottomWidth: '3%',
-    borderBottomColor: '#ef6461',
-    flex: .75,
-    backgroundColor: '#e8e9eb',
-  },
   buttonContainer: {
-    paddingTop: '1%',
-    // justifyContent: 'center',
-    alignItems: 'center',
-    // borderLeftWidth: '.5%',
-    minWidth: '15%'
+    width: '45%',
   },
-
+  buttonHeading: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    left: '180%'
+  },
   container: {
     flex: 1,
     backgroundColor: '#e4b363',
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: '20em',
+    fontSize: 20,
   },
   infoLeft: {
     padding: '.5%'
@@ -98,36 +103,33 @@ const styles = StyleSheet.create({
   infoType: {
     fontWeight: 'bold'
   },
-  line: {
-    marginBottom: '3%',
-    fontSize: '15em'
-  },
   main: {
     padding: '3%',
   },
   mainHeading: {
-    fontSize: '45em',
-    color: '#313638'
+    fontSize: 45,
+    color: '#313638',
+    marginBottom: 15
+  },
+  option: {
+    textDecorationLine: 'underline',
+    width: 80,
+    textAlign: 'center'
+
   },
   sectionContainer: {
     borderRadius: '5',
     padding: '3%',
     marginBottom: '3%',
-    backgroundColor: 'rgba(255, 255, 255, .92)'
+    backgroundColor: 'rgba(255, 255, 255, .9)'
   },
   sectionHeading: {
-    fontSize: '20em',
+    fontSize: 20,
     marginBottom: 8,
     textDecorationLine: 'underline'
   },
   setting: {
     fontWeight: 'bold',
-    fontSize: '17em'
+    fontSize: 17
   },
-  settingSwitch: {
-    // minHeight: '10em'
-  },
-  text: {
-    marginBottom: 0
-  }
 });

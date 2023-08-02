@@ -21,7 +21,7 @@ text-decoration-line: underline;
 
 export const  GlobalParagraph = styled.Text`
 text-align: center;
-color: #4D5558;
+color: #31368;
 font-size: 16px;
 font-weight: bold;
 padding-bottom:4px
@@ -54,5 +54,6 @@ backgroundColor: #EF6461;
 
 export const GlobalButtonText = styled.Text`
 color: #fff;
-
+font-size: 16px;
+font-weight: bold;
 `;

@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
 
-import { userData } from '../../assets/dummy-data/userData.js';
-
 const obscurePass = (password) => {
   let result = '';
   for (let index = 0; index < password.length; index++) {
@@ -11,7 +9,7 @@ const obscurePass = (password) => {
   return result;
 };
 
-export default PersonalBlock = ({ data }) => {
+export default PersonalBlock = ({ profile }) => {
   return (
     <View style={styles.sectionContainer}>
 
@@ -20,7 +18,7 @@ export default PersonalBlock = ({ data }) => {
       <View style={styles.infoBlock}>
         <View style={styles.infoLeft}>
           <Text style={styles.infoType}>Name: </Text>
-          <Text style={styles.info}>{data.firstName} {data.lastName}</Text>
+          <Text style={styles.info}>{profile.firstName} {profile.lastName}</Text>
         </View>
         <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.editButton}>Edit</Text>
@@ -30,7 +28,7 @@ export default PersonalBlock = ({ data }) => {
       <View style={styles.infoBlock}>
         <View style={styles.infoLeft}>
           <Text style={styles.infoType}>Email:</Text>
-          <Text style={styles.info}>{data.email}</Text>
+          <Text style={styles.info}>{profile.email}</Text>
         </View>
         <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.editButton}>Edit</Text>
@@ -40,7 +38,7 @@ export default PersonalBlock = ({ data }) => {
       {/* <View style={styles.infoBlock}>
                 <View style={styles.infoLeft}>
                   <Text style={styles.infoType}>Password:</Text>
-                  <Text style={styles.info}>{obscurePass(data.password)}</Text>
+                  <Text style={styles.info}>{obscurePass(profile.password)}</Text>
                 </View>
                 <TouchableOpacity style={styles.buttonContainer}>
                   <Text style={styles.editButton}>Edit</Text>
@@ -51,7 +49,7 @@ export default PersonalBlock = ({ data }) => {
       <View style={styles.infoBlock}>
         <View style={styles.infoLeft}>
           <Text style={styles.infoType}>Primary phone number:</Text>
-          <Text style={styles.info}>{data.phone.slice(0, 3)}-{data.phone.slice(3, 6)}-{data.phone.slice(6, 10)}</Text>
+          <Text style={styles.info}>{profile.phone.slice(0, 3)}-{profile.phone.slice(3, 6)}-{profile.phone.slice(6, 10)}</Text>
         </View>
         <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.editButton}>Edit</Text>
@@ -61,10 +59,10 @@ export default PersonalBlock = ({ data }) => {
       <View style={styles.infoBlock}>
         <View style={styles.infoLeft}>
           <Text style={styles.infoType}>Address:</Text>
-          <Text style={[styles.line, styles.text]}>{data.address1}</Text>
-          {data.address2 && <Text style={[styles.line, styles.text]}>{data.address2}</Text>}
-          <Text style={[styles.line, styles.text]}>{data.city}, {data.state}</Text>
-          <Text style={[styles.line, styles.text]}>{data.zip}</Text>
+          <Text style={[styles.line, styles.text]}>{profile.address1}</Text>
+          {profile.address2 && <Text style={[styles.line, styles.text]}>{profile.address2}</Text>}
+          <Text style={[styles.line, styles.text]}>{profile.city}, {profile.state}</Text>
+          <Text style={[styles.line, styles.text]}>{profile.zip}</Text>
         </View>
         <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.editButton}>Edit</Text>

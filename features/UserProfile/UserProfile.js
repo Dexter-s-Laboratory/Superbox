@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, 
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
-export default function UserProfile({profile, setProfile, navigation}) {
+export default function UserProfile({profile, setProfile, navigation, handleProfileUpdate}) {
 
 
 
@@ -43,7 +43,7 @@ export default function UserProfile({profile, setProfile, navigation}) {
             </View>
           </View>
 
-          <PersonalBlock profile={profile} />
+          <PersonalBlock handleProfileUpdate={handleProfileUpdate}profile={profile} />
 
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionHeading}>Settings</Text>

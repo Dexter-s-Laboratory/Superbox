@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native';
 import HomeMarket from "./features/Marketplace/HomeMarket.js";
 import Signin from "./features/LoginSignup/Signin.js";
 import Cart from './features/Cart/CartPage.js';

@@ -35,7 +35,7 @@ function HomeStack() {
 
 export default function App() {
 
-  const [profile, setProfile] = useState(userData);
+  const [profile, setProfile] = useState('');
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
